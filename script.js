@@ -1,5 +1,6 @@
 var numberArr = [1,2,3,4,5,6];
 var catID = [];
+var attempts = 1;
 
 for(var x=1; x < 7; x++){
     var num = Math.floor(Math.random() * numberArr.length);
@@ -34,47 +35,74 @@ var card6 = document.getElementsByClassName("card6")[0];
 card6.setAttribute("id","card6");
 card6.setAttribute("onclick", "play(this.id)");
 
+
 function play(clicked_id){
+    match = false;
     var clickID = clicked_id;
-    
-    if(clickID == "card1"){
-        document.getElementsByClassName("card1")[0].style.background = "none";
-        var cardChild = document.getElementsByClassName("card1")[0].getElementsByTagName("*")[0];
-        catID.push(cardChild.id);
-        cardChild.style.display = "block";
-    }
-    else if(clickID == "card2"){
-        document.getElementsByClassName("card2")[0].style.background = "none";
-        var cardChild = document.getElementsByClassName("card2")[0].getElementsByTagName("*")[0];
-        catID.push(cardChild.id);
-        cardChild.style.display = "block";
-    }
-    else if(clickID == "card3"){
-        document.getElementsByClassName("card3")[0].style.background = "none";
-        var cardChild = document.getElementsByClassName("card3")[0].getElementsByTagName("*")[0];
-        catID.push(cardChild.id);
-        cardChild.style.display = "block";
-    }
-    else if(clickID == "card4"){
-        document.getElementsByClassName("card4")[0].style.background = "none";
-        var cardChild = document.getElementsByClassName("card4")[0].getElementsByTagName("*")[0];
-        catID.push(cardChild.id);
-        cardChild.style.display = "block";
-    }
-    else if(clickID == "card5"){
-        document.getElementsByClassName("card5")[0].style.background = "none";
-        var cardChild = document.getElementsByClassName("card5")[0].getElementsByTagName("*")[0];
-        catID.push(cardChild.id);
-        cardChild.style.display = "block";
-    }
-    else if(clickID == "card6"){
-        document.getElementsByClassName("card6")[0].style.background = "none";
-        var cardChild = document.getElementsByClassName("card6")[0].getElementsByTagName("*")[0];
-        catID.push(cardChild.id);
-        cardChild.style.display = "block";
+    console.log(attempts);
+
+    if(attempts < 3){
+        if(clickID == "card1"){
+            document.getElementsByClassName("card1")[0].style.background = "none";
+            var cardChild = document.getElementsByClassName("card1")[0].getElementsByTagName("*")[0];
+            cardChild.style.display = "block";
+            catID.push(cardChild.id);
+            attempts = attempts + 1;
+        }
+        if(clickID == "card2"){
+            document.getElementsByClassName("card2")[0].style.background = "none";
+            var cardChild = document.getElementsByClassName("card2")[0].getElementsByTagName("*")[0];
+            cardChild.style.display = "block";
+            catID.push(cardChild.id);
+            attempts = attempts + 1;
+        }
+        if(clickID == "card3"){
+            document.getElementsByClassName("card3")[0].style.background = "none";
+            var cardChild = document.getElementsByClassName("card3")[0].getElementsByTagName("*")[0];
+            cardChild.style.display = "block";
+            catID.push(cardChild.id);
+            attempts = attempts + 1;
+        }
+        if(clickID == "card4"){
+            document.getElementsByClassName("card4")[0].style.background = "none";
+            var cardChild = document.getElementsByClassName("card4")[0].getElementsByTagName("*")[0];
+            cardChild.style.display = "block";
+            catID.push(cardChild.id);
+            attempts = attempts + 1;
+        }
+        if(clickID == "card5"){
+            document.getElementsByClassName("card5")[0].style.background = "none";
+            var cardChild = document.getElementsByClassName("card5")[0].getElementsByTagName("*")[0];
+            cardChild.style.display = "block";
+            catID.push(cardChild.id);
+            attempts = attempts + 1;
+        }
+        if(clickID == "card6"){
+            document.getElementsByClassName("card6")[0].style.background = "none";
+            var cardChild = document.getElementsByClassName("card6")[0].getElementsByTagName("*")[0];
+            cardChild.style.display = "block";
+            catID.push(cardChild.id);
+            attempts = attempts + 1;  
+        }
     }
 
-    if(catID[0] == "1" && catID[1] == "2" || catID[0] == "2" && catID[1] == "1"){
-        alert("Its a match");
+    checkMatch();
+
+    function checkMatch (){
+            if(catID[0] == "1" && catID[1] == "2" || catID[0] == "2" && catID[1] == "1" && match == false){
+                setTimeout(function () { alert("Its a Match!"); }, 1);
+                catID.splice(0, 2);
+                attempts = 0;
+            }
+            else if (catID[0] == "3" && catID[1] == "4" || catID[0] == "4" && catID[1] == "3" && match == false){
+                setTimeout(function () { alert("Its a Match!"); }, 1);
+                catID.splice(0, 2);
+                attempts = 0;
+            }
+            else if (catID[0] == "5" && catID[1] == "6" || catID[0] == "6" && catID[1] == "5" && match == false){
+                setTimeout(function () { alert("Its a Match!"); }, 1);
+                catID.splice(0, 2);
+                attempts = 0;
+        }
     }
 }
