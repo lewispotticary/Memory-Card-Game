@@ -103,6 +103,35 @@ function play(clicked_id){
                 setTimeout(function () { alert("Its a Match!"); }, 1);
                 catID.splice(0, 2);
                 attempts = 0;
-        }
+            }
+            else if (attempts > 2){
+                setTimeout(function () { alert("Not a Match! Try Again"); }, 1);
+
+                document.getElementsByClassName("card1")[0].style.background = "green";
+                var cardChild = document.getElementsByClassName("card1")[0].getElementsByTagName("*")[0];
+                cardChild.style.display = "none";
+
+                document.getElementsByClassName("card2")[0].style.background = "green";
+                var cardChild = document.getElementsByClassName("card2")[0].getElementsByTagName("*")[0];
+                cardChild.style.display = "none";
+
+                document.getElementsByClassName("card3")[0].style.background = "green";
+                var cardChild = document.getElementsByClassName("card3")[0].getElementsByTagName("*")[0];
+                cardChild.style.display = "none";
+
+                document.getElementsByClassName("card4")[0].style.background = "green";
+                var cardChild = document.getElementsByClassName("card4")[0].getElementsByTagName("*")[0];
+                cardChild.style.display = "none";
+
+                document.getElementsByClassName("card5")[0].style.background = "green";
+                var cardChild = document.getElementsByClassName("card5")[0].getElementsByTagName("*")[0];
+                cardChild.style.display = "none";
+
+                document.getElementsByClassName("card6")[0].style.background = "green";
+                var cardChild = document.getElementsByClassName("card6")[0].getElementsByTagName("*")[0];
+                cardChild.style.display = "none";
+
+                attempts = 0;         
+            }
     }
 }
