@@ -74,6 +74,28 @@ img {
   background: green;
 }
 
+.scoreContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.score {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+}
+
+.failAttempt {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+}
+
+h2 {
+  margin-right: 0.3rem;
+}
 .blackCat1 {
   display: none;
 }
