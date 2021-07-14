@@ -1,6 +1,8 @@
 var numberArr = [1,2,3,4,5,6];
 var catID = [];
-var attempts = 1;
+var attempts = 0;
+var score = 0;
+var failAttempt = 0;
 
 for(var x=1; x < 7; x++){
     var num = Math.floor(Math.random() * numberArr.length);
@@ -39,7 +41,7 @@ card6.setAttribute("onclick", "play(this.id)");
 function play(clicked_id){
     match = false;
     var clickID = clicked_id;
-    console.log(attempts);
+    console.log("attempts:" + attempts);
 
     if(attempts < 3){
         if(clickID == "card1"){
@@ -86,26 +88,36 @@ function play(clicked_id){
         }
     }
 
-    checkMatch();
+    setTimeout(function () { checkMatch(); }, 2500);
+    
 
     function checkMatch (){
+        if (attempts == 2){
+            console.log(catID);
             if(catID[0] == "1" && catID[1] == "2" || catID[0] == "2" && catID[1] == "1" && match == false){
                 setTimeout(function () { alert("Its a Match!"); }, 1);
                 catID.splice(0, 2);
+                score = score + 1;
                 attempts = 0;
             }
             else if (catID[0] == "3" && catID[1] == "4" || catID[0] == "4" && catID[1] == "3" && match == false){
                 setTimeout(function () { alert("Its a Match!"); }, 1);
                 catID.splice(0, 2);
+                score = score + 1;
                 attempts = 0;
             }
             else if (catID[0] == "5" && catID[1] == "6" || catID[0] == "6" && catID[1] == "5" && match == false){
                 setTimeout(function () { alert("Its a Match!"); }, 1);
                 catID.splice(0, 2);
+                score = score + 1;
                 attempts = 0;
             }
-            else if (attempts > 2){
+            else{
                 setTimeout(function () { alert("Not a Match! Try Again"); }, 1);
+
+                failAttempt = failAttempt + 1;
+
+                catID.splice(0, 2);
 
                 document.getElementsByClassName("card1")[0].style.background = "green";
                 var cardChild = document.getElementsByClassName("card1")[0].getElementsByTagName("*")[0];
@@ -133,5 +145,16 @@ function play(clicked_id){
 
                 attempts = 0;         
             }
+
+            console.log(score);
+            console.log(attempts);
+
+            var scoreH3 = document.getElementById("scoreCount");
+            scoreH3.innerHTML = "";
+            scoreH3.append(score);
+            var failAttemptH3 = document.getElementById("failAttemptCount");
+            failAttemptH3.innerHTML = "";
+            failAttemptH3.append(failAttempt);
+        }
     }
 }
