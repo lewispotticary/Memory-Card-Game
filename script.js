@@ -7,6 +7,8 @@ var blackMatch = false;
 var orangeMatch = false;
 var greyMatch = false;
 
+//Appending a cat card to a random div.
+
 for(var x=1; x < 7; x++){
     var num = Math.floor(Math.random() * numberArr.length);
     var roll = numberArr.splice(num, 1);
@@ -15,6 +17,8 @@ for(var x=1; x < 7; x++){
     var catTemp = document.getElementById(x);
     cardTemp.appendChild(catTemp);
 }
+
+//Storing card as variables and adding ID and onlick attributes
 
 var card1 = document.getElementsByClassName("card1")[0];
 card1.setAttribute("id","card1");
@@ -41,12 +45,15 @@ card6.setAttribute("id","card6");
 card6.setAttribute("onclick", "play(this.id)");
 
 
-function play(clicked_id){
-    match = false;
-    var clickID = clicked_id;
+function play(clicked_id){ //When card clicked this function will run.
+
+    //Storing click_id into variable
+
+    var clickID = clicked_id; 
+
+    //If attempts less than or equal to one show the cat behind card that is clicked. 
 
     if(attempts <= 1){
-        console.log("run");
         if(clickID == "card1"){
             document.getElementsByClassName("card1")[0].style.background = "none";
             var cardChild = document.getElementsByClassName("card1")[0].getElementsByTagName("*")[0];
@@ -90,13 +97,14 @@ function play(clicked_id){
             attempts = attempts + 1;  
         }
 
+        //Run checkMatch function.
+
         setTimeout(function () { checkMatch(); }, 2000);
     }
 
 
-    function checkMatch (){
+    function checkMatch (){ //This function checks if the two cards show are a match. 
         if (attempts == 2){
-            console.log(catID);
             if(catID[0] == "1" && catID[1] == "2" || catID[0] == "2" && catID[1] == "1" && match == false){
                 setTimeout(function () { alert("Its a Match!"); }, 1);
                 catID.splice(0, 2);
@@ -118,7 +126,7 @@ function play(clicked_id){
                 attempts = 0;
                 orangeMatch = true;
             }
-            else{
+            else{ //If no match then increase failed attempts and hide all cards
                 setTimeout(function () { alert("Not a Match! Try Again"); }, 1);
 
                 failAttempt = failAttempt + 1;
@@ -152,19 +160,23 @@ function play(clicked_id){
                 attempts = 0;         
             }
 
+            //Append score and failed attempts values to divs. 
+
             var scoreH3 = document.getElementById("scoreCount");
             scoreH3.innerHTML = "";
             scoreH3.append(score);
             var failAttemptH3 = document.getElementById("failAttemptCount");
             failAttemptH3.innerHTML = "";
-            failAttemptH3.append(failAttempt);         
+            failAttemptH3.append(failAttempt);  
+            
+            //Run winner function
             
             setTimeout(function () { winner(); }, 2000);
         }
     }
 }
 
-function winner (){
+function winner (){ //If all matches are true then alert win then reload page to start again. 
     if(blackMatch == true && orangeMatch == true && greyMatch == true)
     {
         alert("You Win!")
